@@ -11,7 +11,7 @@ import SwiftUI
 @Reducer
 struct StarWarsFeature {
     @ObservableState
-    struct State {
+    struct State: Equatable {
         var starWarsFilms: [Film] = []
         var filmNumber = 1
     }
@@ -21,7 +21,7 @@ struct StarWarsFeature {
         case filmResponse(StarWarsFilmJson)
     }
     
-    struct Film: Identifiable {
+    struct Film: Identifiable, Equatable {
         var id: String
         var title: String
     }

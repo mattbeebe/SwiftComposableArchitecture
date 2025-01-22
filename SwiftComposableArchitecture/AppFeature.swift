@@ -12,12 +12,12 @@ import SwiftUI
 struct AppFeature {
     struct State: Equatable {
         var tab1 = CounterFeature.State()
-        var tab2 = CounterFeature.State()
+        var tab2 = StarWarsFeature.State()
     }
     
     enum Action {
         case tab1(CounterFeature.Action)
-        case tab2(CounterFeature.Action)
+        case tab2(StarWarsFeature.Action)
     }
     
     var body: some ReducerOf<Self> {
@@ -25,7 +25,7 @@ struct AppFeature {
             CounterFeature()
         }
         Scope(state: \.tab2, action: \.tab2) {
-            CounterFeature()
+            StarWarsFeature()
         }
         Reduce { state, action in
             return .none
@@ -41,12 +41,12 @@ struct AppView: View {
         TabView {
             CounterView(store: store.scope(state: \.tab1, action: \.tab1))
                 .tabItem {
-                    Text("Counter 1")
+                    Text("Counter")
                 }
             
-            CounterView(store: store.scope(state: \.tab2, action: \.tab2))
+            StarWarsFilmsView(store: store.scope(state: \.tab2, action: \.tab2))
                 .tabItem {
-                    Text("Counter 2")
+                    Text("Star Wars Films")
                 }
         }
     }
